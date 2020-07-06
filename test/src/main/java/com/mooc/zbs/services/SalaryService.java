@@ -1,15 +1,20 @@
 package com.mooc.zbs.services;
 
-import com.mooc.zbs.beans.Bean;
+import com.mooc.zbs.beans.AutoWired;
+import com.mooc.zbs.beans.Service;
+import com.mooc.zbs.utils.SalaryHelper;
 
-@Bean
+@Service
 public class SalaryService {
+    @AutoWired
+    private SalaryHelper salaryHelper;
+
     /**
      * 计算工资
      *
      * @param experience 工龄
      */
     public Integer calSalary(Integer experience) {
-        return experience * 5000;
+        return salaryHelper.calSalary(experience);
     }
 }

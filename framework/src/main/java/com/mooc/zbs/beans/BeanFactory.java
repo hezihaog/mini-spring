@@ -52,8 +52,9 @@ public class BeanFactory {
     private static boolean finishCreate(Class<?> cls) throws IllegalAccessException, InstantiationException {
         boolean hasBeanAnno = cls.isAnnotationPresent(Bean.class);
         boolean hasControllerAnno = cls.isAnnotationPresent(Controller.class);
-        //忽略没有使用Bean注解和不是Controller的类
-        if (!hasBeanAnno && !hasControllerAnno) {
+        boolean hasServiceSAnno = cls.isAnnotationPresent(Service.class);
+        //忽略，没有使用Bean注解和不是Controller、Service的类
+        if (!hasBeanAnno && !hasControllerAnno && !hasServiceSAnno) {
             return true;
         }
         //创建Bean，处理对象中的属性，查看是否需要依赖注入
