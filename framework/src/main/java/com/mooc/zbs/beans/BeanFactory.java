@@ -15,7 +15,7 @@ public class BeanFactory {
     /**
      * Bean容器
      */
-    private static Map<Class<?>, Object> classToBean = new ConcurrentHashMap<>();
+    private static final Map<Class<?>, Object> classToBean = new ConcurrentHashMap<>();
 
     /**
      * 获取一个Bean

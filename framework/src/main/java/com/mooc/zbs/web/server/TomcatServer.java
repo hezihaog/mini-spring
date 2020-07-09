@@ -7,7 +7,13 @@ import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 
 public class TomcatServer {
+    /**
+     * Tomcat实例
+     */
     private Tomcat tomcat;
+    /**
+     * 启动参数，后续可以获取启动参数来进行配置
+     */
     private String[] args;
 
     public TomcatServer(String[] args) {

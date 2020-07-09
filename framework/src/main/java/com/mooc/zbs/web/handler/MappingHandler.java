@@ -16,19 +16,19 @@ public class MappingHandler {
     /**
      * 请求路径Uri
      */
-    private String uri;
+    private final String uri;
     /**
      * Controller中对应的方法
      */
-    private Method method;
+    private final Method method;
     /**
      * Controller类对象
      */
-    private Class<?> controller;
+    private final Class<?> controller;
     /**
      * 调用方法时传递的参数
      */
-    private String[] args;
+    private final String[] args;
 
     public MappingHandler(String uri, Method method, Class<?> controller, String[] args) {
         this.uri = uri;
@@ -56,42 +56,12 @@ public class MappingHandler {
         for (int i = 0; i < args.length; i++) {
             parameters[i] = req.getParameter(args[i]);
         }
-        //实例化Controller
+        //从缓存中取出Controller，启动时就已经创建Controller实例了
         Object ctl = BeanFactory.getBean(controller);
+        //调用对应的接口方法，并获取响应结果
         Object response = method.invoke(ctl, parameters);
+        //将响应结果写到外面
         res.getWriter().println(response.toString());
         return true;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
-
-    public Method getMethod() {
-        return method;
-    }
-
-    public void setMethod(Method method) {
-        this.method = method;
-    }
-
-    public Class<?> getController() {
-        return controller;
-    }
-
-    public void setController(Class<?> controller) {
-        this.controller = controller;
-    }
-
-    public String[] getArgs() {
-        return args;
-    }
-
-    public void setArgs(String[] args) {
-        this.args = args;
     }
 }

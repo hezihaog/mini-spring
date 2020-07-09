@@ -2,7 +2,6 @@ package com.mooc.zbs.core;
 
 import java.io.IOException;
 import java.net.JarURLConnection;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -11,9 +10,12 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * 类扫描器
+ * 类扫描器，将指定包下的所有Class收集起来
  */
 public class ClassScanner {
+    /**
+     * 扫描指定包下的所有Class
+     */
     public static List<Class<?>> scanClasses(String packageName) throws IOException, ClassNotFoundException {
         List<Class<?>> classList = new ArrayList<>();
         //将类的全路径名转换为文件路径

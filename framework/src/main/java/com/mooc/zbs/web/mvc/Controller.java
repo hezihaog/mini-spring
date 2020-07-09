@@ -11,5 +11,4 @@ import java.lang.annotation.*;
 //作用到类上
 @Target(ElementType.TYPE)
 public @interface Controller {
-
 }
